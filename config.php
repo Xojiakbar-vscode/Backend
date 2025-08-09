@@ -5,8 +5,10 @@ define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_NAME', 'tailorshop');
 
-// Start session
-session_start();
+// Start session only if not started
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Check if user is logged in for protected pages
 function checkLogin() {
@@ -18,9 +20,9 @@ function checkLogin() {
 
 // Create database connection
 try {
-    $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASS);
+    $conn = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch(PDOException $e) {
+} catch (PDOException $e) {
     die("Connection failed: " . $e->getMessage());
 }
 
@@ -36,5 +38,3 @@ function sanitize($data) {
 
 // Asosiy URL ni aniqlash
 define('BASE_URL', 'http://localhost/tailorshop/Backend/');
-
-// Barcha linklarda shu konstanta ishlatiladi

@@ -2,7 +2,7 @@
 require_once '../config.php';checkLogin();
 
 // Only super admin can access this page
-if ($_SESSION['admin_role'] === 'super_admin') {
+if ($_SESSION['admin_role'] !== 'super_admin') {
     $_SESSION['error_message'] = "You don't have permission to access this page!";
     redirect('dashboard.php');
 }

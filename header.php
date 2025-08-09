@@ -121,7 +121,7 @@ tekshirish();
             </li>
 
             <!-- Adminlar faqat super_admin uchun -->
-            <?php if (isset($_SESSION['admin_role']) && $_SESSION['admin_role'] === 'super_admin'): ?>
+            <?php if (isset($_SESSION['admin_role']) && $_SESSION['admin_role'] !== 'super_admin'): ?>
             <li class="nav-item">
                 <a class="nav-link text-white" href="<?php echo BASE_URL; ?>admins/index.php">
                     <i class="bi bi-person-badge me-2"></i> Adminlar
